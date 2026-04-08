@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sofia & Greg Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        /* ============================================
+           ENVELOPE / PAGE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
@@ -20,10 +28,8 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
@@ -34,14 +40,14 @@
             position: relative;
             width: 700px;
             height: 480px;
-            cursor: pointer;
+            cursor: default;
             filter:
                 drop-shadow(0 2px 4px rgba(0,0,0,0.3))
                 drop-shadow(0 10px 20px rgba(0,0,0,0.35))
                 drop-shadow(0 30px 50px rgba(0,0,0,0.4));
         }
 
-        /* Back of envelope — darkest layer */
+        /* Back of envelope */
         .envelope-back {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -51,33 +57,26 @@
             z-index: 1;
         }
 
-        /* Invitation card */
+        /* ============================================
+           INVITATION CARD
+           No background-image — content rendered as HTML inside
+           ============================================ */
         .invitation-card {
             position: absolute;
             top: 20px;
             left: 50%;
             width: 440px;
             height: 650px;
-            background-image: url('invite.jpg');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
             background-color: white;
             border-radius: 5px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.4);
             z-index: 2;
             transform: translate(-50%, 0) scale(0.68);
             transform-origin: top center;
+            overflow: hidden;
         }
 
-        /* ============================================
-           ENVELOPE FLAPS
-           Fold visibility comes from TONAL CONTRAST
-           between adjacent flaps, not white lines.
-           Side flaps get subtle crease lines.
-           Bottom flap is clean (no lines).
-           ============================================ */
-
-        /* Left flap — mid tone */
+        /* Flap styles */
         .flap-left {
             position: absolute;
             top: 0; left: 0;
@@ -88,7 +87,6 @@
             border-radius: 5px;
             pointer-events: none;
         }
-        /* Subtle fold crease */
         .flap-left::after {
             content: '';
             position: absolute;
@@ -102,7 +100,6 @@
                 transparent 51.5%, transparent 100%);
         }
 
-        /* Right flap — slightly lighter than left */
         .flap-right {
             position: absolute;
             top: 0; left: 0;
@@ -126,7 +123,6 @@
                 transparent 51.5%, transparent 100%);
         }
 
-        /* Bottom flap — lightest, most prominent. No fold lines. */
         .flap-bottom {
             position: absolute;
             top: 0; left: 0;
@@ -138,10 +134,6 @@
             pointer-events: none;
         }
 
-        /* ============================================
-           TOP FLAP — brightest flap for max contrast
-           against the darker side flaps
-           ============================================ */
         .flap-container {
             position: absolute;
             top: 0; left: 0;
@@ -159,7 +151,6 @@
             background: linear-gradient(180deg, #2c2c2c 0%, #262626 40%, #202020 100%);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
         }
-        /* Subtle vignette for depth */
         .flap-shape::after {
             content: '';
             position: absolute;
@@ -168,7 +159,6 @@
             background: radial-gradient(ellipse at 50% 30%, transparent 30%, rgba(0,0,0,0.1) 100%);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
         }
-        /* Shadow where top flap tip meets bottom flap */
         .flap-shape::before {
             content: '';
             position: absolute;
@@ -178,11 +168,6 @@
             z-index: 1;
         }
 
-        /* ============================================
-           WAX SEAL — PNG image
-           Place your seal image as 'wax-seal.png' in the same folder.
-           Use a PNG with transparent background for best results.
-           ============================================ */
         .wax-seal {
             position: absolute;
             bottom: -38px;
@@ -193,16 +178,11 @@
             backface-visibility: hidden;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
         }
-
         .wax-seal img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: contain;
         }
 
-        /* ============================================
-           LINEN TEXTURE — image overlay
-           ============================================ */
         .paper-grain {
             position: absolute;
             top: 0; left: 0;
@@ -217,9 +197,7 @@
             opacity: 0.18;
         }
 
-        /* ============================================
-           ANIMATIONS
-           ============================================ */
+        /* Animations */
         .envelope-wrapper.open .flap-container {
             transform: rotateX(180deg);
             z-index: 1;
@@ -231,23 +209,10 @@
         }
 
         @keyframes pullOutAndCenter {
-            0% {
-                transform: translate(-50%, 0) scale(0.68);
-                z-index: 2;
-            }
-            40% {
-                transform: translate(-50%, -480px) scale(0.68);
-                z-index: 2;
-            }
-            45% {
-                transform: translate(-50%, -480px) scale(0.68);
-                z-index: 20;
-            }
-            100% {
-                transform: translate(-50%, -90px) scale(1.05);
-                z-index: 20;
-                box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-            }
+            0%   { transform: translate(-50%, 0) scale(0.68); z-index: 2; }
+            40%  { transform: translate(-50%, -480px) scale(0.68); z-index: 2; }
+            45%  { transform: translate(-50%, -480px) scale(0.68); z-index: 20; }
+            100% { transform: translate(-50%, -90px) scale(1.05); z-index: 20; box-shadow: 0 30px 60px rgba(0,0,0,0.7); }
         }
 
         .hint {
@@ -261,101 +226,241 @@
             pointer-events: none;
             transition: opacity 0.4s;
         }
+        .envelope-wrapper.open .hint { opacity: 0; }
 
-        .envelope-wrapper.open .hint {
-            opacity: 0;
-        }
 
-        /* Clickable website link overlay */
-        .card-link {
-            position: absolute;
-            bottom: 4.5%;
-            left: 10%;
-            width: 80%;
-            height: 4%;
-            z-index: 25;
-            cursor: pointer;
-            pointer-events: none;
-            border-radius: 3px;
-        }
-        .card-link:hover {
-            background: rgba(0,0,0,0.04);
-        }
-        .envelope-wrapper.open .card-link {
-            pointer-events: auto;
-        }
 
-        /* ============================================
-           MOBILE RESPONSIVE
-           Scale the envelope to fill phone screens.
-           Uses CSS transform to scale uniformly so all
-           proportions and animations stay intact.
-           ============================================ */
+        /* Mobile */
         @media (max-width: 768px) {
-            body {
-                padding-bottom: 60px;
-            }
+            body { padding-bottom: 60px; }
 
             .envelope-wrapper {
                 width: 380px;
                 height: 261px;
             }
 
-            /*
-               Card must fit inside the 261px mobile envelope.
-               Formula: scale = (envelope_height - top) / card_height
-               (261 - 10) / 650 = 0.386 → 0.38 (slight buffer so card doesn't peek out)
-               The animation 0% keyframe must match this value.
-            */
             .invitation-card {
                 top: 10px;
                 transform: translate(-50%, 0) scale(0.38);
             }
 
-            .flap-container {
-                height: 174px;
-            }
+            .flap-container { height: 174px; }
 
             .wax-seal {
                 width: 50px; height: 50px;
                 bottom: -20px;
             }
 
-            .hint {
-                bottom: -40px;
-                font-size: 14px;
-            }
+            .hint { bottom: -40px; font-size: 14px; }
+            .flap-shape::before { height: 15px; }
 
-            .flap-shape::before {
-                height: 15px;
-            }
-
-            /* Card animation for mobile */
             .envelope-wrapper.open .invitation-card {
                 animation: pullOutAndCenterMobile 3.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
                 animation-delay: 1s;
             }
 
             @keyframes pullOutAndCenterMobile {
-                0% {
-                    transform: translate(-50%, 0) scale(0.38);
-                    z-index: 2;
-                }
-                40% {
-                    transform: translate(-50%, -261px) scale(0.38);
-                    z-index: 2;
-                }
-                45% {
-                    transform: translate(-50%, -261px) scale(0.38);
-                    z-index: 20;
-                }
-                100% {
-                    /* Adjust scale() here to control opened card size on mobile */
-                    transform: translate(-50%, -70px) scale(0.85);
-                    z-index: 20;
-                    box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-                }
+                0%   { transform: translate(-50%, 0) scale(0.38); z-index: 2; }
+                40%  { transform: translate(-50%, -261px) scale(0.38); z-index: 2; }
+                45%  { transform: translate(-50%, -261px) scale(0.38); z-index: 20; }
+                100% { transform: translate(-50%, -70px) scale(0.85); z-index: 20; box-shadow: 0 15px 30px rgba(0,0,0,0.7); }
             }
+        }
+
+        /* ============================================
+           INVITE CARD INNER STYLES
+           Scoped to .invite-inner to avoid conflicts
+           ============================================ */
+        .invite-inner {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .invite-inner a {
+            cursor: pointer;
+        }
+
+        .invite-inner .inv-card {
+            --ink: #1a1a18;
+            --ink-light: #3a3a36;
+            --ink-muted: #7a7a72;
+            --gold: #b8a06a;
+            width: 100%;
+            padding: 36px 40px 48px;
+            text-align: center;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .invite-inner .inv-illustration {
+            width: 240px;
+            height: 165px;
+            margin: 0 auto 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .invite-inner .inv-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .invite-inner .inv-illustration-placeholder {
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(184, 160, 106, 0.4);
+            background: rgba(184, 160, 106, 0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #7a7a72;
+        }
+
+        .invite-inner .inv-illustration-placeholder svg { opacity: 0.35; }
+
+        .invite-inner .inv-illustration-placeholder span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 10px;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        .invite-inner .inv-preamble {
+            font-family: 'Cinzel', serif;
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: #3a3a36;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .invite-inner .inv-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #1a1a18;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .invite-inner .inv-names {
+            margin: 0;
+        }
+
+        .invite-inner .inv-name {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a18;
+            letter-spacing: 0.06em;
+            line-height: 1.05;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .invite-inner .inv-ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 44px;
+            color: #3a3a36;
+            line-height: 1;
+            display: block;
+            margin: 2px 0;
+        }
+
+        .invite-inner .inv-divider {
+            width: 90px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b8a06a, transparent);
+            margin: 24px auto;
+        }
+
+        .invite-inner .inv-divider-sm {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b8a06a, transparent);
+            margin: 18px auto;
+        }
+
+        .invite-inner .inv-date {
+            font-family: 'Cinzel', serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: #1a1a18;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .invite-inner .inv-time {
+            font-family: 'Cinzel', serif;
+            font-size: 8.5px;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            color: #3a3a36;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .invite-inner .inv-venue-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 30px;
+            color: #1a1a18;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .invite-inner .inv-address {
+            font-family: 'Cinzel', serif;
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: #3a3a36;
+            text-transform: uppercase;
+        }
+
+        .invite-inner .inv-rsvp-cta {
+            font-family: 'Cinzel', serif;
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: #1a1a18;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .invite-inner .inv-rsvp-link a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 10px;
+            font-style: italic;
+            color: #7a7a72;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            letter-spacing: 0.03em;
+        }
+
+        .invite-inner .inv-rsvp-password {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 9px;
+            font-style: italic;
+            color: #7a7a72;
+            margin-top: 4px;
+            letter-spacing: 0.03em;
         }
     </style>
 </head>
@@ -363,8 +468,62 @@
 
     <div class="envelope-wrapper" id="envelope">
         <div class="envelope-back"></div>
+
+        <!-- Invitation card with inline HTML content -->
         <div class="invitation-card">
-            <a class="card-link" href="https://www.zola.com/wedding/sofiaandgreg2026" target="_blank"></a>
+            <div class="invite-inner">
+                <div class="inv-card">
+
+                    <!-- Venue Illustration -->
+                    <div class="inv-illustration">
+                        <img src="venue-illustration.png" alt="Auberge des Gallant venue illustration"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="inv-illustration-placeholder" style="display:none;">
+                            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="4" width="40" height="40" rx="2" stroke="#b8a06a" stroke-width="1.5"/>
+                                <path d="M4 32 L14 22 L22 30 L30 20 L44 34" stroke="#b8a06a" stroke-width="1.5" stroke-linejoin="round"/>
+                                <circle cx="34" cy="16" r="5" stroke="#b8a06a" stroke-width="1.5"/>
+                            </svg>
+                            <span>venue-illustration.png</span>
+                        </div>
+                    </div>
+
+                    <!-- Preamble -->
+                    <p class="inv-preamble">You are joyfully invited to the</p>
+
+                    <!-- Script headline -->
+                    <div class="inv-script">wedding of</div>
+
+                    <!-- Names -->
+                    <div class="inv-names">
+                        <span class="inv-name" id="inv-name-1">Sofia Gonzalez-Herrero</span>
+                        <span class="inv-ampersand">&amp;</span>
+                        <span class="inv-name" id="inv-name-2">Gregory Inose</span>
+                    </div>
+
+                    <div class="inv-divider"></div>
+
+                    <!-- Date & Time -->
+                    <p class="inv-date">Friday August 14, 2026</p>
+                    <p class="inv-time">4 O'Clock in the Afternoon</p>
+
+                    <!-- Venue -->
+                    <div class="inv-venue-script">Auberge des Gallant</div>
+                    <p class="inv-address">1171 Chemin Saint Henri, Sainte-Marthe</p>
+
+                    <div class="inv-divider-sm"></div>
+
+                    <!-- RSVP -->
+                    <p class="inv-rsvp-cta">Check out our website for more details &amp; to RSVP</p>
+                    <div class="inv-rsvp-link">
+                        <a href="https://www.zola.com/wedding/sofiaandgreg2026" target="_blank">
+                            https://www.zola.com/wedding/sofiaandgreg2026
+                        </a>
+                    </div>
+                    <p class="inv-rsvp-password">(Password: SofiaAndGreg2026)</p>
+
+                </div>
+            </div>
         </div>
 
         <div class="flap-left"></div>
@@ -382,11 +541,28 @@
     </div>
 
     <script>
+        // Auto-open envelope on load
         window.addEventListener('load', function () {
             setTimeout(function () {
                 document.getElementById('envelope').classList.add('open');
             }, 1500);
         });
+
+        // Dynamically fit names to single line
+        function fitInviteNames() {
+            const maxSize = 28;
+            const minSize = 12;
+            document.querySelectorAll('.inv-name').forEach(function(el) {
+                el.style.fontSize = maxSize + 'px';
+                let size = maxSize;
+                while (el.scrollWidth > el.offsetWidth && size > minSize) {
+                    size -= 0.5;
+                    el.style.fontSize = size + 'px';
+                }
+            });
+        }
+        document.fonts.ready.then(fitInviteNames);
+        window.addEventListener('resize', fitInviteNames);
     </script>
 </body>
 </html>
