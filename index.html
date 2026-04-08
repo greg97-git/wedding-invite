@@ -47,7 +47,6 @@
                 drop-shadow(0 30px 50px rgba(0,0,0,0.4));
         }
 
-        /* Back of envelope */
         .envelope-back {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -57,10 +56,6 @@
             z-index: 1;
         }
 
-        /* ============================================
-           INVITATION CARD
-           No background-image — content rendered as HTML inside
-           ============================================ */
         .invitation-card {
             position: absolute;
             top: 20px;
@@ -76,7 +71,6 @@
             overflow: hidden;
         }
 
-        /* Flap styles */
         .flap-left {
             position: absolute;
             top: 0; left: 0;
@@ -197,7 +191,6 @@
             opacity: 0.18;
         }
 
-        /* Animations */
         .envelope-wrapper.open .flap-container {
             transform: rotateX(180deg);
             z-index: 1;
@@ -228,9 +221,6 @@
         }
         .envelope-wrapper.open .hint { opacity: 0; }
 
-
-
-        /* Mobile */
         @media (max-width: 768px) {
             body { padding-bottom: 60px; }
 
@@ -269,7 +259,6 @@
 
         /* ============================================
            INVITE CARD INNER STYLES
-           Scoped to .invite-inner to avoid conflicts
            ============================================ */
         .invite-inner {
             width: 100%;
@@ -278,8 +267,6 @@
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            overflow-y: auto;
-            overflow-x: hidden;
             font-family: 'Cormorant Garamond', Georgia, serif;
         }
 
@@ -288,12 +275,8 @@
         }
 
         .invite-inner .inv-card {
-            --ink: #1a1a18;
-            --ink-light: #3a3a36;
-            --ink-muted: #7a7a72;
-            --gold: #b8a06a;
             width: 100%;
-            padding: 36px 40px 48px;
+            padding: 28px 40px 50px;
             text-align: center;
             position: relative;
             background: #ffffff;
@@ -301,8 +284,8 @@
 
         .invite-inner .inv-illustration {
             width: 240px;
-            height: 165px;
-            margin: 0 auto 24px;
+            height: 155px;
+            margin: 0 auto 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -347,7 +330,7 @@
             letter-spacing: 0.2em;
             color: #3a3a36;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .invite-inner .inv-script {
@@ -355,7 +338,7 @@
             font-size: 36px;
             color: #1a1a18;
             line-height: 1.1;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .invite-inner .inv-names {
@@ -376,7 +359,7 @@
 
         .invite-inner .inv-ampersand {
             font-family: 'Great Vibes', cursive;
-            font-size: 44px;
+            font-size: 36px;
             color: #3a3a36;
             line-height: 1;
             display: block;
@@ -387,14 +370,14 @@
             width: 90px;
             height: 1px;
             background: linear-gradient(to right, transparent, #b8a06a, transparent);
-            margin: 24px auto;
+            margin: 16px auto;
         }
 
         .invite-inner .inv-divider-sm {
             width: 50px;
             height: 1px;
             background: linear-gradient(to right, transparent, #b8a06a, transparent);
-            margin: 18px auto;
+            margin: 14px auto;
         }
 
         .invite-inner .inv-date {
@@ -414,7 +397,7 @@
             letter-spacing: 0.16em;
             color: #3a3a36;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .invite-inner .inv-venue-script {
@@ -469,12 +452,10 @@
     <div class="envelope-wrapper" id="envelope">
         <div class="envelope-back"></div>
 
-        <!-- Invitation card with inline HTML content -->
         <div class="invitation-card">
             <div class="invite-inner">
                 <div class="inv-card">
 
-                    <!-- Venue Illustration -->
                     <div class="inv-illustration">
                         <img src="venue-illustration.png" alt="Auberge des Gallant venue illustration"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -488,13 +469,9 @@
                         </div>
                     </div>
 
-                    <!-- Preamble -->
                     <p class="inv-preamble">You are joyfully invited to the</p>
-
-                    <!-- Script headline -->
                     <div class="inv-script">wedding of</div>
 
-                    <!-- Names -->
                     <div class="inv-names">
                         <span class="inv-name" id="inv-name-1">Sofia Gonzalez-Herrero</span>
                         <span class="inv-ampersand">&amp;</span>
@@ -503,24 +480,21 @@
 
                     <div class="inv-divider"></div>
 
-                    <!-- Date & Time -->
                     <p class="inv-date">Friday August 14, 2026</p>
                     <p class="inv-time">4 O'Clock in the Afternoon</p>
 
-                    <!-- Venue -->
                     <div class="inv-venue-script">Auberge des Gallant</div>
                     <p class="inv-address">1171 Chemin Saint Henri, Sainte-Marthe</p>
 
                     <div class="inv-divider-sm"></div>
 
-                    <!-- RSVP -->
                     <p class="inv-rsvp-cta">Check out our website for more details &amp; to RSVP</p>
                     <div class="inv-rsvp-link">
                         <a href="https://www.zola.com/wedding/sofiaandgreg2026" target="_blank">
                             https://www.zola.com/wedding/sofiaandgreg2026
                         </a>
                     </div>
-                    <p class="inv-rsvp-password">(Password: SofiaAndGreg2026)</p>
+                    <p class="inv-rsvp-password">(Password: SOFIAANDGREG2026)</p>
 
                 </div>
             </div>
@@ -541,14 +515,12 @@
     </div>
 
     <script>
-        // Auto-open envelope on load
         window.addEventListener('load', function () {
             setTimeout(function () {
                 document.getElementById('envelope').classList.add('open');
             }, 1500);
         });
 
-        // Dynamically fit names to single line
         function fitInviteNames() {
             const maxSize = 28;
             const minSize = 12;
