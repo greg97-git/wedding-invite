@@ -6,12 +6,7 @@
     <title>Sofia & Greg Wedding Invitation</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        /* ============================================
-           ENVELOPE / PAGE STYLES
-           ============================================ */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -73,8 +68,7 @@
 
         .flap-left {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 3;
             clip-path: polygon(0 0, 50% 50%, 0 100%);
             background: linear-gradient(135deg, #1e1e1e 0%, #1a1a1a 50%, #161616 100%);
@@ -84,20 +78,16 @@
         .flap-left::after {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg,
                 transparent 0%, transparent 48.5%,
-                rgba(255,255,255,0.05) 49.2%,
-                rgba(255,255,255,0.10) 50%,
-                rgba(255,255,255,0.05) 50.8%,
-                transparent 51.5%, transparent 100%);
+                rgba(255,255,255,0.05) 49.2%, rgba(255,255,255,0.10) 50%,
+                rgba(255,255,255,0.05) 50.8%, transparent 51.5%, transparent 100%);
         }
 
         .flap-right {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 3;
             clip-path: polygon(100% 0, 50% 50%, 100% 100%);
             background: linear-gradient(225deg, #202020 0%, #1c1c1c 50%, #181818 100%);
@@ -107,20 +97,16 @@
         .flap-right::after {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(225deg,
                 transparent 0%, transparent 48.5%,
-                rgba(255,255,255,0.05) 49.2%,
-                rgba(255,255,255,0.10) 50%,
-                rgba(255,255,255,0.05) 50.8%,
-                transparent 51.5%, transparent 100%);
+                rgba(255,255,255,0.05) 49.2%, rgba(255,255,255,0.10) 50%,
+                rgba(255,255,255,0.05) 50.8%, transparent 51.5%, transparent 100%);
         }
 
         .flap-bottom {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 4;
             clip-path: polygon(0 100%, 50% 42%, 100% 100%);
             background: linear-gradient(0deg, #2a2a2a 0%, #252525 40%, #1f1f1f 100%);
@@ -140,16 +126,14 @@
 
         .flap-shape {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(180deg, #2c2c2c 0%, #262626 40%, #202020 100%);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
         }
         .flap-shape::after {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(ellipse at 50% 30%, transparent 30%, rgba(0,0,0,0.1) 100%);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
         }
@@ -164,23 +148,18 @@
 
         .wax-seal {
             position: absolute;
-            bottom: -38px;
-            left: 50%;
+            bottom: -38px; left: 50%;
             transform: translateX(-50%);
             width: 95px; height: 95px;
             z-index: 6;
             backface-visibility: hidden;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
         }
-        .wax-seal img {
-            width: 100%; height: 100%;
-            object-fit: contain;
-        }
+        .wax-seal img { width: 100%; height: 100%; object-fit: contain; }
 
         .paper-grain {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             border-radius: 5px;
             pointer-events: none;
             z-index: 10;
@@ -195,7 +174,6 @@
             transform: rotateX(180deg);
             z-index: 1;
         }
-
         .envelope-wrapper.open .invitation-card {
             animation: pullOutAndCenter 3.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
             animation-delay: 1s;
@@ -210,11 +188,9 @@
 
         .hint {
             position: absolute;
-            bottom: -60px;
-            width: 100%;
+            bottom: -60px; width: 100%;
             text-align: center;
-            color: white;
-            font-size: 20px;
+            color: white; font-size: 20px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
             pointer-events: none;
             transition: opacity 0.4s;
@@ -223,32 +199,16 @@
 
         @media (max-width: 768px) {
             body { padding-bottom: 60px; }
-
-            .envelope-wrapper {
-                width: 380px;
-                height: 261px;
-            }
-
-            .invitation-card {
-                top: 10px;
-                transform: translate(-50%, 0) scale(0.38);
-            }
-
+            .envelope-wrapper { width: 380px; height: 261px; }
+            .invitation-card { top: 10px; transform: translate(-50%, 0) scale(0.38); }
             .flap-container { height: 174px; }
-
-            .wax-seal {
-                width: 50px; height: 50px;
-                bottom: -20px;
-            }
-
+            .wax-seal { width: 50px; height: 50px; bottom: -20px; }
             .hint { bottom: -40px; font-size: 14px; }
             .flap-shape::before { height: 15px; }
-
             .envelope-wrapper.open .invitation-card {
                 animation: pullOutAndCenterMobile 3.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
                 animation-delay: 1s;
             }
-
             @keyframes pullOutAndCenterMobile {
                 0%   { transform: translate(-50%, 0) scale(0.38); z-index: 2; }
                 40%  { transform: translate(-50%, -261px) scale(0.38); z-index: 2; }
@@ -261,8 +221,7 @@
            INVITE CARD INNER STYLES
            ============================================ */
         .invite-inner {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: #ffffff;
             display: flex;
             align-items: flex-start;
@@ -270,9 +229,7 @@
             font-family: 'Cormorant Garamond', Georgia, serif;
         }
 
-        .invite-inner a {
-            cursor: pointer;
-        }
+        .invite-inner a { cursor: pointer; }
 
         .invite-inner .inv-card {
             width: 100%;
@@ -283,167 +240,142 @@
         }
 
         .invite-inner .inv-illustration {
-            width: 240px;
-            height: 155px;
+            width: 240px; height: 155px;
             margin: 0 auto 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
             overflow: hidden;
         }
-
         .invite-inner .inv-illustration img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
+            width: 100%; height: 100%;
+            object-fit: contain; display: block;
         }
-
         .invite-inner .inv-illustration-placeholder {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border: 1px dashed rgba(184, 160, 106, 0.4);
             background: rgba(184, 160, 106, 0.04);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: #7a7a72;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 8px; color: #7a7a72;
         }
-
         .invite-inner .inv-illustration-placeholder svg { opacity: 0.35; }
-
         .invite-inner .inv-illustration-placeholder span {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 10px;
-            font-style: italic;
-            letter-spacing: 0.05em;
-            opacity: 0.7;
+            font-size: 10px; font-style: italic;
+            letter-spacing: 0.05em; opacity: 0.7;
         }
 
         .invite-inner .inv-preamble {
             font-family: 'Cinzel', serif;
-            font-size: 8px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: #3a3a36;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            font-size: 8px; font-weight: 600;
+            letter-spacing: 0.2em; color: #3a3a36;
+            text-transform: uppercase; margin-bottom: 10px;
         }
 
         .invite-inner .inv-script {
             font-family: 'Great Vibes', cursive;
-            font-size: 36px;
-            color: #1a1a18;
-            line-height: 1.1;
-            margin-bottom: 8px;
+            font-size: 36px; color: #1a1a18;
+            line-height: 1.1; margin-bottom: 8px;
         }
 
-        .invite-inner .inv-names {
-            margin: 0;
-        }
+        .invite-inner .inv-names { margin: 0; }
 
         .invite-inner .inv-name {
             font-family: 'Cinzel', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #1a1a18;
-            letter-spacing: 0.06em;
-            line-height: 1.05;
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
+            font-size: 28px; font-weight: 700;
+            color: #1a1a18; letter-spacing: 0.06em;
+            line-height: 1.05; display: block;
+            white-space: nowrap; overflow: hidden;
         }
 
         .invite-inner .inv-ampersand {
             font-family: 'Great Vibes', cursive;
-            font-size: 36px;
-            color: #3a3a36;
-            line-height: 1;
-            display: block;
-            margin: 2px 0;
+            font-size: 36px; color: #3a3a36;
+            line-height: 1; display: block; margin: 2px 0;
         }
 
         .invite-inner .inv-divider {
-            width: 90px;
-            height: 1px;
+            width: 90px; height: 1px;
             background: linear-gradient(to right, transparent, #b8a06a, transparent);
             margin: 16px auto;
         }
 
         .invite-inner .inv-divider-sm {
-            width: 50px;
-            height: 1px;
+            width: 50px; height: 1px;
             background: linear-gradient(to right, transparent, #b8a06a, transparent);
             margin: 14px auto;
         }
 
         .invite-inner .inv-date {
             font-family: 'Cinzel', serif;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            color: #1a1a18;
-            text-transform: uppercase;
-            margin-bottom: 6px;
+            font-size: 9px; font-weight: 600;
+            letter-spacing: 0.18em; color: #1a1a18;
+            text-transform: uppercase; margin-bottom: 6px;
         }
 
         .invite-inner .inv-time {
             font-family: 'Cinzel', serif;
-            font-size: 8.5px;
-            font-weight: 400;
-            letter-spacing: 0.16em;
-            color: #3a3a36;
-            text-transform: uppercase;
-            margin-bottom: 14px;
+            font-size: 8.5px; font-weight: 400;
+            letter-spacing: 0.16em; color: #3a3a36;
+            text-transform: uppercase; margin-bottom: 14px;
         }
 
         .invite-inner .inv-venue-script {
             font-family: 'Great Vibes', cursive;
-            font-size: 30px;
-            color: #1a1a18;
-            line-height: 1.2;
-            margin-bottom: 4px;
+            font-size: 30px; color: #1a1a18;
+            line-height: 1.2; margin-bottom: 4px;
         }
 
         .invite-inner .inv-address {
             font-family: 'Cinzel', serif;
-            font-size: 8px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            color: #3a3a36;
+            font-size: 8px; font-weight: 600;
+            letter-spacing: 0.18em; color: #3a3a36;
             text-transform: uppercase;
         }
 
         .invite-inner .inv-rsvp-cta {
             font-family: 'Cinzel', serif;
-            font-size: 8px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            color: #1a1a18;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            font-size: 8px; font-weight: 600;
+            letter-spacing: 0.18em; color: #1a1a18;
+            text-transform: uppercase; margin-bottom: 8px;
         }
 
         .invite-inner .inv-rsvp-link a {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 10px;
-            font-style: italic;
-            color: #7a7a72;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            letter-spacing: 0.03em;
+            font-size: 10px; font-style: italic;
+            color: #7a7a72; text-decoration: underline;
+            text-underline-offset: 2px; letter-spacing: 0.03em;
         }
 
-        .invite-inner .inv-rsvp-password {
+        /* Password copy button */
+        .inv-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+            padding: 4px 10px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 9px;
             font-style: italic;
             color: #7a7a72;
-            margin-top: 4px;
             letter-spacing: 0.03em;
+            background: transparent;
+            border: 1px solid rgba(184, 160, 106, 0.4);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .inv-copy-btn:hover {
+            color: #3a3a36;
+            border-color: rgba(184, 160, 106, 0.8);
+            background: rgba(184, 160, 106, 0.06);
+        }
+        .inv-copy-btn.copied {
+            color: #7a9a72;
+            border-color: rgba(120, 160, 106, 0.6);
+        }
+        .inv-copy-btn svg {
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -494,7 +426,14 @@
                             https://www.zola.com/wedding/sofiaandgreg2026
                         </a>
                     </div>
-                    <p class="inv-rsvp-password">(Password: SOFIAANDGREG2026)</p>
+
+                    <button class="inv-copy-btn" id="copyPwdBtn" onclick="copyPassword()">
+                        <svg width="9" height="9" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="9" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M3 11H2a1 1 0 01-1-1V2a1 1 0 011-1h8a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        <span id="copyPwdLabel">Password: SOFIAANDGREG2026</span>
+                    </button>
 
                 </div>
             </div>
@@ -522,8 +461,7 @@
         });
 
         function fitInviteNames() {
-            const maxSize = 28;
-            const minSize = 12;
+            const maxSize = 28, minSize = 12;
             document.querySelectorAll('.inv-name').forEach(function(el) {
                 el.style.fontSize = maxSize + 'px';
                 let size = maxSize;
@@ -535,6 +473,19 @@
         }
         document.fonts.ready.then(fitInviteNames);
         window.addEventListener('resize', fitInviteNames);
+
+        function copyPassword() {
+            navigator.clipboard.writeText('SOFIAANDGREG2026').then(function() {
+                var btn = document.getElementById('copyPwdBtn');
+                var label = document.getElementById('copyPwdLabel');
+                btn.classList.add('copied');
+                label.textContent = 'Copied!';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    label.textContent = 'Password: SOFIAANDGREG2026';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
