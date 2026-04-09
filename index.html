@@ -430,7 +430,7 @@
 
                     <p class="inv-rsvp-cta">Check out our website for more details &amp; to RSVP</p>
                     <div class="inv-rsvp-link">
-                        <a href="https://www.zola.com/wedding/sofiaandgreg2026" target="_blank">
+                        <a href="https://www.zola.com/wedding/sofiaandgreg2026">
                             https://www.zola.com/wedding/sofiaandgreg2026
                         </a>
                     </div>
@@ -462,6 +462,17 @@
     </div>
 
     <script>
+        // Fire GA4 guest_visit event if ?guest= parameter is present
+        window.addEventListener('load', function () {
+            var params = new URLSearchParams(window.location.search);
+            var guest = params.get('guest');
+            if (guest && typeof gtag === 'function') {
+                gtag('event', 'guest_visit', {
+                    'guest_name': guest
+                });
+            }
+        });
+
         window.addEventListener('load', function () {
             setTimeout(function () {
                 document.getElementById('envelope').classList.add('open');
